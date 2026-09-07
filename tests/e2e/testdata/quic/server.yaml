@@ -1,0 +1,9 @@
+services:
+- name: quic-http
+  addr: :18843
+  handler:
+    type: http
+  listener:
+    type: quic
+    metadata:
+      cipherKey: 0123456789abcdef0123456789abcdef

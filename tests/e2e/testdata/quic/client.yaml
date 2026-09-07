@@ -1,0 +1,22 @@
+services:
+- name: http-proxy
+  addr: :8080
+  handler:
+    type: http
+    chain: quic-chain
+  listener:
+    type: tcp
+
+chains:
+- name: quic-chain
+  hops:
+  - name: hop-0
+    nodes:
+    - name: node-0
+      addr: {{.ServerAddr}}
+      connector:
+        type: http
+      dialer:
+        type: quic
+        metadata:
+          cipherKey: 0123456789abcdef0123456789abcdef
