@@ -21,6 +21,7 @@ import (
 	"github.com/go-gost/x/config/parsing/parser"
 	xmetrics "github.com/go-gost/x/metrics"
 	metrics "github.com/go-gost/x/metrics/service"
+	xplugin "github.com/go-gost/x/plugin"
 	"github.com/go-gost/x/registry"
 	"github.com/judwhite/go-svc"
 )
@@ -190,6 +191,8 @@ func (p *program) Stop() error {
 		p.srvProfiling.Close()
 		logger.Default().Debug("service @profiling shutdown")
 	}
+
+	xplugin.Shutdown()
 
 	return nil
 }
